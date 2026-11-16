@@ -14,10 +14,10 @@ plugins {
 def releaseKeystore = System.getenv('DHD_ANDROID_KEYSTORE')
 
 android {
-    namespace = "app.downhillrevived"
+    namespace = "dz.latchi.downhill"
     compileSdk = 35
     defaultConfig {
-        applicationId = "app.downhillrevived"
+        applicationId = "dz.latchi.downhill"
         minSdk = 29   // Android 10 (finding 191); build_apk.py's check_release reads it here
         targetSdk = 35
         versionCode = project.hasProperty('dhdVersionCode') ? project.dhdVersionCode.toInteger() : 1

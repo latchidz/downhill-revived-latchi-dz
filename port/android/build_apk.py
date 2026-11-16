@@ -63,7 +63,7 @@ LAUNCHER_UI = ROOT / 'port' / 'launcher' / 'ui'
 
 
 RELEASE_ENV = ('DHD_ANDROID_KEYSTORE', 'DHD_ANDROID_KEYSTORE_PASS', 'DHD_ANDROID_KEY_ALIAS', 'DHD_ANDROID_KEY_PASS')
-PACKAGE = 'app.downhillrevived'
+PACKAGE = 'dz.latchi.downhill'
 # The release key's certificate (public; finding 143): every release APK is signed with it.
 RELEASE_CERT_SHA256 = 'D7:61:3E:E0:F0:93:95:22:D8:3B:06:CE:8A:05:ED:9D:03:E4:A9:96:8E:EA:2F:9C:83:98:58:94:14:56:AE:1B'
 NEW_SIGNER_NOTE = ("NOTE: --new-signing-key: signed by %s, not the release key RELEASE_CERT_SHA256; installed copies "

@@ -7,7 +7,7 @@
 // skips it), and written to files/dhd-exit.txt, which android_main.c quotes into the new dhd.log
 // ("previous run: ...") and LogShare puts at the top of a shared log. The words a player reads and
 // the trace's summary: CrashReport.java.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import android.app.ActivityManager;
 import android.annotation.TargetApi;

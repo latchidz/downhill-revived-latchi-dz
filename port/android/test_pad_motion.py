@@ -34,7 +34,7 @@ def main():
         sources.append(str(path))
     sources += [str(HERE / 'app/src/main/java/app/downhillrevived/PadMotion.java'), str(HERE / 'test/PadMotionTest.java')]
     subprocess.run([jdk_tool('javac'), '--release', '17', '-d', str(OUT)] + sources, check=True)
-    return subprocess.run([jdk_tool('java'), '-cp', str(OUT), 'app.downhillrevived.PadMotionTest']).returncode
+    return subprocess.run([jdk_tool('java'), '-cp', str(OUT), 'dz.latchi.downhill.PadMotionTest']).returncode
 
 if __name__ == '__main__':
     raise SystemExit(main())

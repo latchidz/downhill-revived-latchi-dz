@@ -10,7 +10,7 @@
 // its end. What only Android knows stays here: the phone's words, and which log is which (a dhd.log
 // written since this process started is the game running now: host.c moved the one before to
 // dhd-previous.log).
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;

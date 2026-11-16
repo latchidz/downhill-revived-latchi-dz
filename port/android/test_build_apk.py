@@ -63,7 +63,7 @@ with zipfile.ZipFile(NO_PAGE_APK, 'w') as z:
     z.writestr('lib/arm64-v8a/libmain.so', b'\x7fELF not really')
     z.writestr('assets/dhd-split.txt', 'one\n')
 SDK = "sdkVersion:'%d'\n" % build_apk.min_sdk()
-GOOD = "package: name='app.downhillrevived' versionCode='708' versionName='0.7.8'\n" + SDK + "native-code: 'arm64-v8a'\n"
+GOOD = "package: name='dz.latchi.downhill' versionCode='708' versionName='0.7.8'\n" + SDK + "native-code: 'arm64-v8a'\n"
 OTHER = "package: name='com.example.other' versionCode='1' versionName='1'\n" + SDK + "native-code: 'arm64-v8a'\n"
 
 
@@ -90,10 +90,10 @@ def main():
     tools(RELEASE, OTHER)
     try:
         problems, _ = build_apk.check_release(FAKE_APK, None, None)
-        check(any("not app.downhillrevived" in p and 'com.example.other' in p for p in problems),
+        check(any("not dz.latchi.downhill" in p and 'com.example.other' in p for p in problems),
               '--check names the wrong package: %r' % problems)
         problems, _ = build_apk.check_release(FAKE_APK, '0.7.8', 708)
-        check(any('not app.downhillrevived 708 0.7.8' in p for p in problems), 'packaging names the wanted version: %r' % problems)
+        check(any('not dz.latchi.downhill 708 0.7.8' in p for p in problems), 'packaging names the wanted version: %r' % problems)
     except Exception as e:  # noqa: BLE001 (the bug this test is for)
         check(False, 'check_release raised %s: %s' % (type(e).__name__, e))
     # no package line at all
@@ -114,7 +114,7 @@ def main():
               '--check refuses with a message: %r' % e.code)
     # a version mismatch on the packaging path
     tools(RELEASE, GOOD)
-    check(any('not app.downhillrevived 709 0.7.9' in p for p in build_apk.check_release(FAKE_APK, '0.7.9', 709)[0]),
+    check(any('not dz.latchi.downhill 709 0.7.9' in p for p in build_apk.check_release(FAKE_APK, '0.7.9', 709)[0]),
           'a version mismatch is refused')
     if failures:
         sys.exit('test_build_apk: %d failed' % len(failures))

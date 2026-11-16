@@ -64,11 +64,11 @@ def main():
     r = subprocess.run([jdk_tool('javac'), '--release', '17', '-d', str(OUT)] + [str(s) for s in sources])
     if r.returncode:
         sys.exit('test_disc_image: javac failed')
-    r = subprocess.run([jdk_tool('java'), '-Djava.library.path=' + str(OUT), '-Djava.io.tmpdir=' + str(OUT), '-cp', str(OUT), 'app.downhillrevived.UpdatePageTest'])
+    r = subprocess.run([jdk_tool('java'), '-Djava.library.path=' + str(OUT), '-Djava.io.tmpdir=' + str(OUT), '-cp', str(OUT), 'dz.latchi.downhill.UpdatePageTest'])
     failed = r.returncode
-    r = subprocess.run([jdk_tool('java'), '-Djava.library.path=' + str(OUT), '-Djava.io.tmpdir=' + str(OUT), '-cp', str(OUT), 'app.downhillrevived.CrashReportTest'])
+    r = subprocess.run([jdk_tool('java'), '-Djava.library.path=' + str(OUT), '-Djava.io.tmpdir=' + str(OUT), '-cp', str(OUT), 'dz.latchi.downhill.CrashReportTest'])
     failed = failed or r.returncode
-    r = subprocess.run([jdk_tool('java'), '-Djava.library.path=' + str(OUT), '-Djava.io.tmpdir=' + str(OUT), '-cp', str(OUT), 'app.downhillrevived.DiscImageTest'] + sys.argv[1:2])
+    r = subprocess.run([jdk_tool('java'), '-Djava.library.path=' + str(OUT), '-Djava.io.tmpdir=' + str(OUT), '-cp', str(OUT), 'dz.latchi.downhill.DiscImageTest'] + sys.argv[1:2])
     failed = failed or r.returncode
     # The game activity's focus-independent SDL controller-motion route (245).
     r = subprocess.run([sys.executable, str(HERE / 'test_pad_motion.py')])

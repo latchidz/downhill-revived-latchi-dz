@@ -3,7 +3,7 @@
 //     python port/android/test_disc_image.py
 //
 // with the disc tests.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 public class UpdatePageTest {
     private static int failures;

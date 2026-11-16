@@ -6,7 +6,7 @@
 // which compiles DiscImage.java and this file with the JDK's javac (JAVA_HOME) into build/ and
 // runs it. Given an .iso (or DHD_TEST_ISO), it also checks the real disc image: the right disc,
 // and its declared volume no longer than the file.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

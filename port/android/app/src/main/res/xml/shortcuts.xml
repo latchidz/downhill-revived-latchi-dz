@@ -11,9 +11,9 @@
         android:shortcutShortLabel="@string/share_log"
         android:shortcutLongLabel="@string/share_log_long">
         <intent
-            android:action="app.downhillrevived.SHARE_LOG"
-            android:targetPackage="app.downhillrevived"
-            android:targetClass="app.downhillrevived.LauncherActivity" />
+            android:action="dz.latchi.downhill.SHARE_LOG"
+            android:targetPackage="dz.latchi.downhill"
+            android:targetClass="dz.latchi.downhill.LauncherActivity" />
     </shortcut>
     <shortcut
         android:shortcutId="launcher"
@@ -22,8 +22,8 @@
         android:shortcutShortLabel="@string/open_launcher"
         android:shortcutLongLabel="@string/open_launcher_long">
         <intent
-            android:action="app.downhillrevived.OPEN_LAUNCHER"
-            android:targetPackage="app.downhillrevived"
-            android:targetClass="app.downhillrevived.LauncherActivity" />
+            android:action="dz.latchi.downhill.OPEN_LAUNCHER"
+            android:targetPackage="dz.latchi.downhill"
+            android:targetClass="dz.latchi.downhill.LauncherActivity" />
     </shortcut>
 </shortcuts>

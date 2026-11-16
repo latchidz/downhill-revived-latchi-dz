@@ -2,7 +2,7 @@
 // (port/host/android_launcher.c): the shared code of the settings (dhd_settings), the disc checks
 // (host.c, dhd_disc), the update check (port/net/update_check.c) and Share log's file
 // (port/host/log_bundle.c), so the launcher keeps no copy of them in Java. Loading the library starts no game: SDL_main is DhdActivity's.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 final class Native {
     static {

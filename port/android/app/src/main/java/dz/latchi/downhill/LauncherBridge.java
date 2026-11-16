@@ -3,7 +3,7 @@
 // arrives as {id, call, args} on the UI thread, runs on the activity's worker threads and is
 // answered {id, ok: true, value} or {id, ok: false, error}; an error is the page's string table key
 // with its values ({code, params}) or, for the disc checks' own words, a string.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import android.net.Uri;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import android.view.InputDevice;
 import android.view.MotionEvent;

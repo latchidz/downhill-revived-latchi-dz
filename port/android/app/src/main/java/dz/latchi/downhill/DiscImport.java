@@ -15,7 +15,7 @@
 // The iOS launcher also finds an .iso the player put in the app's own folder (finding 240); Android
 // has no such folder a player can reach (its files folder is private, Android/data closed to file
 // managers since Android 11), so the picker is the one way in here (finding 242).
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import android.content.ContentResolver;
 import android.content.Context;

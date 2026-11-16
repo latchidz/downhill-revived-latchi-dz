@@ -2,7 +2,7 @@
 // "closed unexpectedly" and their words, a tombstone's summary from its protobuf form (built here
 // field by field after AOSP's tombstone.proto), a tombstone read in part, a text one, and the log
 // copy that leaves out a long log's middle. Run by port/android/test_disc_image.py.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -91,11 +91,11 @@ public class CrashReportTest {
         ByteArrayOutputStream cause = new ByteArrayOutputStream();
         string(cause, 1, "null pointer dereference");
         bytes(t, 15, cause.toByteArray());
-        bytes(t, 16, threadEntry(4321, thread(4321, "app.downhillrevived",
+        bytes(t, 16, threadEntry(4321, thread(4321, "dz.latchi.downhill",
                 frame(0x99, "__futex_wait", 4, "/apex/com.android.runtime/lib64/bionic/libc.so", "aa"))));
         bytes(t, 16, threadEntry(4400, thread(4400, "SDLThread",
                 frame(0x1234, "vkQueueSubmit", 16, driverFile, "abc123"),
-                frame(0x5678, "", 0, "/data/app/~~x/app.downhillrevived-y/lib/arm64/libmain.so", "def456"))));
+                frame(0x5678, "", 0, "/data/app/~~x/dz.latchi.downhill-y/lib/arm64/libmain.so", "def456"))));
         ByteArrayOutputStream map = new ByteArrayOutputStream();  // a memory mapping: after the threads
         string(map, 7, "/system/lib64/libc.so".repeat(40));
         bytes(t, 17, map.toByteArray());
@@ -123,7 +123,7 @@ public class CrashReportTest {
         check(s.contains("signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x18"), "the signal line: " + s);
         check(s.contains("pid: 4321, tid: 4400, name: SDLThread"), "the crashing thread: " + s);
         check(s.contains("#00 pc 0000000000001234  /vendor/lib64/hw/vulkan.mali.so (vkQueueSubmit+16) (BuildId: abc123)"), "frame 0: " + s);
-        check(s.contains("#01 pc 0000000000005678  /data/app/~~x/app.downhillrevived-y/lib/arm64/libmain.so (BuildId: def456)"), "frame 1: " + s);
+        check(s.contains("#01 pc 0000000000005678  /data/app/~~x/dz.latchi.downhill-y/lib/arm64/libmain.so (BuildId: def456)"), "frame 1: " + s);
         check(s.contains("Cause: null pointer dereference"), "the cause: " + s);
         check(!s.contains("__futex_wait"), "only the crashing thread: " + s);
         check(!s.contains("read in part"), "a whole tombstone: " + s);

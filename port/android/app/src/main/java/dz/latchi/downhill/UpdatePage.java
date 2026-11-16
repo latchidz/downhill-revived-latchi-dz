@@ -1,7 +1,7 @@
 // Downhill Revived on Android: which page the update notice may open (finding 143). Apart from
 // DhdActivity so a plain JVM test runs it (port/android/test/UpdatePageTest.java). Nothing here
 // uses Android.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import java.util.Locale;
 

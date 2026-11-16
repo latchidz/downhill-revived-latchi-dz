@@ -1,3 +1,7 @@
+# Downhill Revived · Latchi DZ Edition
+> **Maintained & branded by Iskander Khantouche (Latchi DZ)** — fork of skuza-oss/downhill-revived (GPLv3).
+> نسخة لاعبين الدراجة هون مع إصلاحات منصة اندروريد الخاصة باليدات البلوتوش، معاد تسميتها وعلامتها باسم إسكندر خنتوش (لاتشي ديزي).
+> Upstream project and its authors keep their full credit and copyright below; this edition adds the Latchi DZ layer on top.
 # Downhill Revived
 
 A PC port of Downhill Domination.
@@ -96,3 +100,24 @@ decomp.me and many others: the full list is in [docs/CREDITS.md](docs/CREDITS.md
 [GPL-3.0-or-later](LICENSE). The original game, its data, names and trademarks belong to their
 owners and are not covered by this licence. Code adapted from other projects keeps its own
 notice (see [Credits](docs/CREDITS.md)).
+
+
+---
+
+## 🎮 Latchi DZ Edition — Controllers, Remap & Screen (Android)
+
+### Pairing any Bluetooth / USB gamepad (auto-detect)
+1. Pair the pad in Android settings (or plug it in) **before or while** the game runs — hot-plug is handled: `SDL_EVENT_JOYSTICK_ADDED` re-scans slots live.
+2. The pad takes the first free player slot automatically (Xbox, DualSense, DS4, Switch Pro, 8BitDo and generic HID pads via SDL3's mapping DB; unmapped joysticks get the default positional mapping).
+3. Diagnose on-device with logcat: `adb logcat -s LatchiPad` — every attach / detach / claim / skip is logged by this edition (tag `LatchiPad`), e.g. `controller: device <name> SDL id=3 ...`.
+
+### Remapping buttons per pad
+- In game: **Pause → CONTROLS** page: press the row, then press the button on your pad — changes save to `dhd.ini` instantly (pad1..pad4 layouts), plus `Swap L1/L2`, `Swap R1/R2`, stick invert/swap and dead-zone.
+- Extra mappings for exotic pads: drop a `gamecontrollerdb.txt` next to the game files or set `SDL_GAMECONTROLLERCONFIG`.
+
+### Fullscreen & quality
+- Immersive fullscreen with cutout/gesture-inset handling is always on (Screen.java); landscape under the camera cutout since Android 10.
+- Rendering quality/resolution options live in the in-game SETTINGS page (they persist in `dhd.ini` and survive updates).
+
+### Scope honesty / حدود المشروع
+This is a **native port of one game** (Downhill Domination, SCUS-97177) built on a matching decompilation — **it is not a PS2 emulator and can never run other PS2 games**. Bring your own disc image. Running the whole PS2 library on Android is a separate emulator project (PCSX2 lineage) plus your own BIOS dump.

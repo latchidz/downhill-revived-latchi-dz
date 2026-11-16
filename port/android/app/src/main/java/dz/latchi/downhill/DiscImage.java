@@ -5,7 +5,7 @@
 // iOS launcher's too), all through the natives of port/host/disc_check_jni.c; and the copy loop
 // over the document's stream, the one part that is Android's own I/O. The words a player reads for
 // a refused disc are Android's (check). Nothing here uses Android.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import java.io.IOException;
 import java.io.InputStream;

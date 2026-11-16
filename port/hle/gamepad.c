@@ -33,6 +33,12 @@
 #include "../host/host_end.h"
 
 #include <SDL3/SDL.h>
+#ifdef __ANDROID__
+#include <android/log.h>
+#define PADLOG(...) __android_log_print(ANDROID_LOG_INFO, "LatchiPad", __VA_ARGS__)
+#else
+#define PADLOG(...) fprintf(stderr, __VA_ARGS__)
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -66,7 +72,7 @@ static void log_skipped(SDL_JoystickID id, const char *name, const GamepadDevice
     if (!ids) return;
     skipped = ids;
     skipped[skipped_count++] = id;
-    fprintf(stderr, "controller: %s skipped: not a gamepad (type %d, real %d, buttons %08X, axes %02X, raw %d/%d/%d)\n",
+    PADLOG("controller: %s skipped: not a gamepad (type %d, real %d, buttons %08X, axes %02X, raw %d/%d/%d)\n",
             name ? name : "?", d->type, d->real_type, d->buttons, d->axes, d->raw_buttons, d->raw_axes, d->hats);
 }
 
@@ -263,7 +269,7 @@ static void attach(SDL_JoystickID id)
     if (s->gamepad) SDL_SetGamepadPlayerIndex(s->gamepad, i);
     SDL_PropertiesID props = s->gamepad ? SDL_GetGamepadProperties(s->gamepad) : SDL_GetJoystickProperties(s->joystick);
     int motors = SDL_GetBooleanProperty(props, SDL_PROP_JOYSTICK_CAP_RUMBLE_BOOLEAN, false);
-    fprintf(stderr, "controller: %s (%s%s) is player %d [SDL id=%u]\n", name ? name : "?", how ? how : "gamepad",
+    PADLOG("controller: %s (%s%s) is player %d [SDL id=%u]\n", name ? name : "?", how ? how : "gamepad",
             motors ? ", vibration" : "", i + 1, (unsigned)id);
 }
 
@@ -278,7 +284,7 @@ static void detach(SDL_JoystickID id)
     present[i] = 0;
     SDL_SetAtomicInt(&kinds[i], PAD_KIND_NONE);
     SDL_UnlockMutex(lock);
-    fprintf(stderr, "controller: player %d disconnected [SDL id=%u]\n", i + 1, (unsigned)id);
+    PADLOG("controller: player %d disconnected [SDL id=%u]\n", i + 1, (unsigned)id);
 }
 
 /* A joystick that turns out to be a gamepad (a mapping added) is opened again as one. */
@@ -323,7 +329,7 @@ int gamepad_thread_start(void)
     }
     SDL_SetHint(SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS, "1");  /* the window may not have the focus */
     if (!SDL_InitSubSystem(SDL_INIT_GAMEPAD)) {
-        fprintf(stderr, "controller: SDL didn't start (%s); no controllers (the keyboard still plays)\n", SDL_GetError());
+        PADLOG("controller: SDL didn't start (%s); no controllers (the keyboard still plays)\n", SDL_GetError());
         SDL_SetAtomicInt(&running, -1);
         return 0;
     }
@@ -334,7 +340,7 @@ int gamepad_thread_start(void)
     SDL_PathInfo info;
     if (SDL_GetPathInfo(path, &info)) {
         int added = SDL_AddGamepadMappingsFromFile(path);
-        fprintf(stderr, "controller: %d mappings from %s\n", added, path);
+        PADLOG("controller: %d mappings from %s\n", added, path);
     }
     int count = 0;
     SDL_JoystickID *ids = SDL_GetJoysticks(&count);
@@ -353,7 +359,7 @@ void gamepad_device(int change, unsigned id)
     if (change == PADDEV_ADDED) attach(id);
     else if (change == PADDEV_REMOVED) { forget_skipped(id); detach(id); }
     else if (change == PADDEV_REMAPPED) remap(id);
-    fprintf(stderr, "controller: device %s SDL id=%u; players=%u/%u/%u/%u claimed=%d\n",
+    PADLOG("controller: device %s SDL id=%u; players=%u/%u/%u/%u claimed=%d\n",
             change == PADDEV_ADDED ? "added" : change == PADDEV_REMOVED ? "removed" : "remapped", id,
             (unsigned)slots[0].id, (unsigned)slots[1].id, (unsigned)slots[2].id, (unsigned)slots[3].id, claimed);
 }
@@ -392,7 +398,7 @@ void gamepad_thread_update(void)
         if (slots[swap].gamepad) SDL_SetGamepadPlayerIndex(slots[swap].gamepad, swap);
         const char *name = slots[0].gamepad ? SDL_GetGamepadName(slots[0].gamepad) : SDL_GetJoystickName(slots[0].joystick);
         const char *other = slots[swap].gamepad ? SDL_GetGamepadName(slots[swap].gamepad) : SDL_GetJoystickName(slots[swap].joystick);
-        fprintf(stderr, "controller: %s pressed first: now player 1 (%s is player %d)\n",
+        PADLOG("controller: %s pressed first: now player 1 (%s is player %d)\n",
                 name ? name : "?", other ? other : "?", swap + 1);
     }
     for (int i = 0; i < SLOTS; i++) {
@@ -402,7 +408,7 @@ void gamepad_thread_update(void)
     }
     SDL_UnlockMutex(lock);
     if (!was_claimed && claimed)
-        fprintf(stderr, "controller: player 1 claimed [SDL id=%u]\n", (unsigned)slots[0].id);
+        PADLOG("controller: player 1 claimed [SDL id=%u]\n", (unsigned)slots[0].id);
     for (int i = 0; i < SLOTS; i++)
         if (slots[i].id) rumble(&slots[i], SDL_GetAtomicInt(&want_light[i]), SDL_GetAtomicInt(&want_heavy[i]));
 }

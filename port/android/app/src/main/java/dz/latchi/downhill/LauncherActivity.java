@@ -18,7 +18,7 @@
 // Before the page (finding 152): how the run before ended (LastExit, before any native code), for
 // the page's "closed unexpectedly" note. The icon's long-press shortcuts: Share log (the share
 // sheet only) and Launcher (the page even when the game is set to start directly).
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -56,10 +56,10 @@ import java.util.concurrent.Executors;
 public class LauncherActivity extends Activity {
     static final String TAG = "DownhillRevived";
     /** The shortcut's actions: share the log (no page, no game); open the page whatever the setting. */
-    static final String SHARE_LOG = "app.downhillrevived.SHARE_LOG";
-    static final String OPEN = "app.downhillrevived.OPEN_LAUNCHER";
+    static final String SHARE_LOG = "dz.latchi.downhill.SHARE_LOG";
+    static final String OPEN = "dz.latchi.downhill.OPEN_LAUNCHER";
     /** Started by the game when its disc is missing (DhdActivity.discMissing). */
-    static final String DISC = "app.downhillrevived.CHOOSE_DISC";
+    static final String DISC = "dz.latchi.downhill.CHOOSE_DISC";
     /** The page's origin and folder (Android reserves this host name for an app's own files). */
     static final String ORIGIN = "https://appassets.androidplatform.net";
     static final String BASE = ORIGIN + "/launcher/";

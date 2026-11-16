@@ -3,7 +3,7 @@
 // are hidden with the older system UI flags (as SDL's own full screen does at every level), the
 // screen's size comes from the display's real metrics and its rotation from the default display.
 // Android 11 and later take the same calls as before.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import android.app.Activity;
 import android.graphics.Insets;

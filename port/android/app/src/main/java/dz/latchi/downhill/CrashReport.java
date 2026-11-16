@@ -4,7 +4,7 @@
 // native crash (a tombstone: protobuf since Android 12, text before) as a short readable summary.
 // LastExit.java reads the system's record (ApplicationExitInfo); Share log's file is the shared C's
 // (port/host/log_bundle.c, LogShare.java).
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import java.io.File;
 import java.io.IOException;

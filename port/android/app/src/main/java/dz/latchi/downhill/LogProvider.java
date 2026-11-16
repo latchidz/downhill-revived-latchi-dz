@@ -3,7 +3,7 @@
 // app reads a file only through the read grant of the share it was handed; read-only; one folder
 // (LogShare's, in the cache), plain file names only. It answers OpenableColumns' name and size, which
 // mail and chat apps ask for to name the attachment.
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -18,7 +18,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public class LogProvider extends ContentProvider {
-    static final String AUTHORITY = "app.downhillrevived.logs";
+    static final String AUTHORITY = "dz.latchi.downhill.logs";
 
     static Uri uri(File file) {
         return new Uri.Builder().scheme("content").authority(AUTHORITY).appendPath(file.getName()).build();

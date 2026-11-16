@@ -11,7 +11,7 @@
 // DHD_LAUNCHER_CHECKED. Without a disc image it can play (a
 // start that skips the launcher: a USB controller plugged in) it opens the launcher's disc page
 // instead and ends before the game starts (discReady).
-package app.downhillrevived;
+package dz.latchi.downhill;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
